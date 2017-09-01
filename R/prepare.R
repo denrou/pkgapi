@@ -32,10 +32,9 @@ extract_api <- function(path = ".", targets = character()) {
   r_vanilla(
     function(path, targets, sort_c) {
       options(keep.source = TRUE)
-      pkg <- pkgload::as.package(path)
-      pkgload::load_all(pkg, export_all = FALSE)
+      pkgload::load_all(path, export_all = FALSE)
 
-      env <- pkgload::ns_env(pkg)
+      env <- pkgload::ns_env(path)
 
       all_names <- ls(env, all.names = TRUE)
       objects <- mget(all_names, env)
